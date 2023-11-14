@@ -1,5 +1,7 @@
-ec2-54-246-250-74.eu-west-1.compute.amazonaws.com {
-  reverse_proxy /jenkins localhost:8080
+localhost {
+	respond "Hello, world!"
 }
 
-  
+localhost:2016 {
+	respond "Goodbye, world!"
+}
