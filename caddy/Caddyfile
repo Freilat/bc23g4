@@ -1,18 +1,18 @@
 :80 {
+    # Respond to all other requests with "Hello, world!"
     respond "Hello, world!"
 
-	#jenkins-blueocean:8080
+    # Proxy requests to Jenkins running at jenkins-blueocean:8080 under /myjenkins/
+    reverse_proxy /myjenkins/* jenkins-blueocean:8080 {
+        header_up Host {host}
+        header_up X-Real-IP {remote}
+        header_up X-Forwarded-For {remote}
+        header_up X-Forwarded-Proto {scheme}
+    }
 
-	reverse_proxy /myjenkins/* jenkins-blueocean:8080 {
-	    header_upstream Host {host}
-	    header_upstream X-Real-IP {remote}
-	    header_upstream X-Forwarded-For {remote}
-	    header_upstream X-Forwarded-Proto {scheme}
-	}
-
-	#registry:5000
-	redir /registry /registry/
-	handle_path /registry/* {
-	    reverse_proxy registry:5000
-	}
+    # Redirect requests to /registry to /registry/ and proxy requests under /registry/
+    redir /registry /registry/
+    handle_path /registry/* {
+        reverse_proxy registry:5000
+    }
 }
