@@ -1,12 +1,15 @@
 :80 {
-	respond "Hello, world!"
-	handle_path /jenkins* {
-		reverse_proxy localhost:8080
-	}
-	handle_path /sonar* {
-		reverse_proxy localhost:1111
-	}
-	handle_path /registry* {
-		reverse_proxy localhost:5000
-	}
+    respond "Hello, world!"
+
+    handle_path /jenkins* {
+        reverse_proxy http://localhost:8080
+    }
+
+    handle_path /sonar* {
+        reverse_proxy http://localhost:1111
+    }
+
+    handle_path /registry* {
+        reverse_proxy http://localhost:5000
+    }
 }
