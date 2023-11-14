@@ -2,11 +2,13 @@
     respond "Hello, world!"
 
 	#jenkins-blueocean:8080
-	redir /jenkins /jenkins/
-	handle_path /jenkins/* {
-	    reverse_proxy jenkins-blueocean:8080
-	}
-		
+
+reverse_proxy /myjenkins/* jenkins-blueocean:8080 {
+    header_upstream Host {host}
+    header_upstream X-Real-IP {remote}
+    header_upstream X-Forwarded-For {remote}
+    header_upstream X-Forwarded-Proto {scheme}
+}
 
 	#registry:5000
 	redir /registry /registry/
