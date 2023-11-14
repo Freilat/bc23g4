@@ -1,10 +1,11 @@
 :80 {
     respond "Hello, world!"
 
-    handle_path /jenkins/* {
-        reverse_proxy jenkins-blueocean:8080
-        rewrite /jenkins/* /jenkins{uri}
-    }
+	handle_path /jenkins {
+		reverse_proxy jenkins-blueocean:8080
+	}
+	
+	rewrite /jenkins/* /{1}
 
     handle /sonar* {
 		reverse_proxy sonar:1111
