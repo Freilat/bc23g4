@@ -1,4 +1,4 @@
-localhost {
+ec2-54-246-250-74.eu-west-1.compute.amazonaws.com {
 	respond "Hello, world!"
 }
 
