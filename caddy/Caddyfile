@@ -2,12 +2,12 @@
     respond "Hello, world!"
 
     handle /jenkins* {
-		reverse_proxy localhost:8080
+		reverse_proxy jenkins-blueocean:8080
 	}
     handle /sonar* {
-		reverse_proxy localhost:1111
+		reverse_proxy sonar:1111
 	}
     handle /registry* {
-		reverse_proxy localhost:5000
+		reverse_proxy registry:5000
 	}
 }
