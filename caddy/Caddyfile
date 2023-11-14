@@ -1,23 +1,16 @@
 :80 {
     respond "Hello, world!"
 
- # Reverse proxy for Jenkins
-  handle_path /jenkins {
-    reverse_proxy jenkins-blueocean:8080
-  }
-
-  # Rewrite URLs for Jenkins to remove /jenkins prefix
-  handle_path /jenkins/* {
-    rewrite /jenkins/* /{1}
-  }
-
-
-
-
-    handle /sonar* {
-		reverse_proxy sonar:1111
+	#jenkins-blueocean:8080
+	redir /jenkins /jenkins/
+	handle_path /jenkins/* {
+	    reverse_proxy jenkins-blueocean:8080
 	}
-    handle /registry* {
-		reverse_proxy registry:5000
+		
+
+	#registry:5000
+	redir /registry /registry/
+	handle_path /registry/* {
+	    reverse_proxy registry:5000
 	}
 }
