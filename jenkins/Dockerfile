@@ -10,8 +10,6 @@ RUN echo "deb [arch=$(dpkg --print-architecture) \
   https://download.docker.com/linux/debian \
   $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
 
-RUN apt-get update && apt-get install -y terraform
-
 RUN wget -O- https://apt.releases.hashicorp.com/gpg | \
   gpg --dearmor | \
   tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
@@ -32,6 +30,8 @@ RUN apt-get update && apt-get install -y \
     gnupg \
     software-properties-common \
     && rm -rf /var/lib/apt/lists/*
+    
+RUN apt-get update && apt-get install -y terraform
 
 # Update package lists and install Jenkins plugins
 USER jenkins
