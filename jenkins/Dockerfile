@@ -2,16 +2,6 @@ FROM jenkins/jenkins:2.414.3-jdk17
 
 USER root
 
-RUN apt-get update && apt-get install -y \
-    lsb-release \
-    docker-ce-cli \
-    awscli \
-    less \
-    iputils-ping \
-    gnupg \
-    software-properties-common \
-    && rm -rf /var/lib/apt/lists/*
-
 RUN curl -fsSLo /usr/share/keyrings/docker-archive-keyring.asc \
   https://download.docker.com/linux/debian/gpg
 
@@ -32,6 +22,16 @@ RUN echo "deb [arch=amd64 signed-by=/usr/share/keyrings/hashicorp-archive-keyrin
     curl -fsSL https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg && \
     echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
     tee /etc/apt/sources.list.d/hashicorp.list > /dev/null
+
+RUN apt-get update && apt-get install -y \
+    lsb-release \
+    docker-ce-cli \
+    awscli \
+    less \
+    iputils-ping \
+    gnupg \
+    software-properties-common \
+    && rm -rf /var/lib/apt/lists/*
 
 # Update package lists and install Jenkins plugins
 USER jenkins
