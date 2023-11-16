@@ -31,7 +31,7 @@ RUN apt-get update && apt-get install -y \
     software-properties-common \
     && rm -rf /var/lib/apt/lists/*
     
-RUN apt-get update && apt-get install -y terraform
+# RUN apt-get update && apt-get install -y terraform
 
 # Update package lists and install Jenkins plugins
 USER jenkins
