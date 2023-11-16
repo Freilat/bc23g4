@@ -7,6 +7,6 @@ RUN echo "deb [arch=$(dpkg --print-architecture) \
   signed-by=/usr/share/keyrings/docker-archive-keyring.asc] \
   https://download.docker.com/linux/debian \
   $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
-RUN apt-get update && apt-get install -y docker-ce-cli && apt-get install -y awscli
+RUN apt-get update && apt-get install -y docker-ce-cli && apt-get install -y awscli && apt-get install -y less && apt-get install -y iputils-ping
 USER jenkins
 RUN jenkins-plugin-cli --plugins "blueocean:1.27.9 docker-workflow:572.v950f58993843"
