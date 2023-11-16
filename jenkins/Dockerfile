@@ -13,4 +13,4 @@ RUN apt-get install python3-pip -y
 RUN apt-get install python3-venv -y
 
 USER jenkins
-RUN jenkins-plugin-cli --plugins "blueocean:1.27.9 docker-workflow:572.v950f58993843"
+RUN jenkins-plugin-cli --plugins "blueocean:1.27.9 docker-workflow:572.v950f58993843 sonar:2.16.1 timestamper:1.26"
